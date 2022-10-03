@@ -20,22 +20,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/chat-page',function(){
-    $texts = Conversation::get()[0]->participantTwo;
-    dd($texts);
-    return view('chatpage');
-})->name('chat-page');
-
-Route::post('/send-message',function(Request $request){
-    event(New App\Events\ChatMessage($request->message));
-})->name('send-message');
 
 
-Route::prefix('user')->name('user.')->controller(UserController::class)->group(function(){
+
+
+
+
+Route::name('user.')->controller(UserController::class)->group(function(){
     Route::middleware('PreventBackHistory')->group(function(){
         Route::middleware(['guest:web'])->group(function(){
             Route::get('login','LoginPage')->name('login');
@@ -45,6 +36,9 @@ Route::prefix('user')->name('user.')->controller(UserController::class)->group(f
         });
         Route::middleware(['auth:web'])->group(function(){
             Route::get('logout','logout')->name('logout');
+            Route::get('/','homepage')->name('homepage');
+            Route::get('/convo/{convo}','convopage')->name('convopage');
+            Route::post('/send-message','sendmessage')->name('send-message');
         });
     });
 });
