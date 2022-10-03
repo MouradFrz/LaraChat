@@ -12,9 +12,3 @@ Echo.channel('chat-room')
     console.log(ev)
 })
 
-
-// channel.subscribed(()=>{
-//     console.log('subbed to test channectyjl')
-// }).listen('.My Testing Event',(payload)=>{
-//     console.log(payload)
-// })

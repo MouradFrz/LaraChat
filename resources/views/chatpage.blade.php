@@ -9,14 +9,17 @@
 </head>
 
 <body>
-    <form action="{{ route('send-message') }}" method="post">
+    <form action="{{ route('user.logout') }}" method="GET">
+        <input type="submit" value="Logout">
+    </form>
+    <form id="message-form" action="{{ route('send-message') }}" method="post">
         @csrf
         <label for="">Message : </label>
         <input class="input-field" type="text">
     </form>
     @vite('resources/js/app.js')
     <script>
-        document.querySelector('form').addEventListener('submit',(ev)=>{
+        document.querySelector('#message-form').addEventListener('submit',(ev)=>{
             ev.preventDefault()
             axios.post('/send-message',{message:document.querySelector('.input-field').value})
         })
