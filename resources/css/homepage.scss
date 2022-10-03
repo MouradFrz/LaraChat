@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+$blue-dark:#06283D;
+$blue-medium:#256D85;
+$blue-light:#47B5FF;
+$blue-lighter:#DFF6FF;
+$black:#252525;
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+body{
+    min-height: 100vh;
+    background-color: #eef9fd;
+}
+.container{
+    width: 95%;
+    max-width: 378px;
+    margin: auto;
+    background-color: $blue-lighter;
+    min-height: 100vh;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    nav{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0px 10px 10px;
+        input{
+            padding: 8px 15px;
+            border: none;
+            background-color: $blue-dark;
+            font-weight: 800;
+            color: white;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: 0.08s ease;
+            &:hover{
+                background-color: $blue-medium;
+            }
+        }
+    }
+    main{
+        &>a{
+            text-decoration: none;
+        }
+        .convo{
+            padding: 10px;
+            color: $black;
+            transition: 0.05s ease-out;
+            p:nth-child(1){
+                font-size: 1.2rem;
+                font-weight: 600;
+            }
+            p:nth-child(2){
+                font-size: 0.9rem;
+                font-weight: 400;
+                color: #484848;
+            }
+            p:nth-child(3){
+                font-size: 0.7rem;
+                font-weight: 200;
+            }
+            &:hover{
+                background-color: #37abd2;
+            }
+        }
+        .no-convo{
+            text-align: center;
+            color: #5d5d5d;
+            font-size: 0.8rem;
+        }
+    }
+}

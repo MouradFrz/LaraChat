@@ -62,8 +62,12 @@ class UserController extends Controller
         Auth::guard('web')->logout();
         return redirect()->route('user.login');
     }
+    public function deleteConvIfNoMessage(){
+        Conversation::whereNotIn('id',Message::groupBy('convo')->get('convo')->toArray())->delete();
+    }
     public function homepage()
     {
+        $this->deleteConvIfNoMessage();
         $convos = Conversation::where('participant_one', Auth::user()->id)->orWhere('participant_two', Auth::user()->id)->get();
         return view('homepage', ['convos' => $convos->sortByDesc('latestMessageDate')]);
     }
