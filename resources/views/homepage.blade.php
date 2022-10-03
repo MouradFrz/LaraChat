@@ -30,8 +30,10 @@
     <form action="{{ route('user.logout') }}" method="GET">
         <input type="submit" value="Logout">
     </form>
-    
-    @vite('resources/js/app.js')
+    <script>
+        let getID = "{{ Auth::user()->id }}"
+    </script>
+    @vite('resources/js/anyMessage.js')
 
 </body>
 

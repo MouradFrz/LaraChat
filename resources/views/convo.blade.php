@@ -27,8 +27,6 @@
             axios.post('/send-message', {
                 message: document.querySelector('.input-field').value,
                 convo: "{{ $convo->id }}"
-            }).then((res)=>{
-                console.log(res)
             })
         })
 </script>

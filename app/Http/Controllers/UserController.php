@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\AnyMessage;
 use App\Events\SendMessage;
 use App\Models\Collection;
 use App\Models\Conversation;
@@ -76,6 +77,7 @@ class UserController extends Controller
     public function sendmessage(Request $request)
     {   
         $convo=Conversation::find($request->convo);
+        $targetID= ($convo->participant_one == Auth::user()->id) ? $convo->participant_two : $convo->participant_one;
         if (in_array(Auth::user()->id, [$convo->participant_one, $convo->participant_two])) {
             try {
                 Message::create([
@@ -83,7 +85,9 @@ class UserController extends Controller
                     'message' => $request->message,
                     'convo' => $request->convo
                 ]);
+                event(new AnyMessage(Auth::user()->email, $targetID, $request->message));
                 event(new SendMessage($request->convo, $request->message, Auth::user()->email));
+                
             } catch (Exception $e) {
                 dd($e);
             }

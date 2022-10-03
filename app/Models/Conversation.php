@@ -29,7 +29,7 @@ class Conversation extends Model
     protected function latestMessageDate(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => Message::where('convo',$this->id)->orderBy('created_at','DESC')->first()->created_at,
+            get: fn ($value) => Message::where('convo',$this->id)->orderBy('created_at','DESC')->first()->created_at ?? null,
         );
     }
 }
