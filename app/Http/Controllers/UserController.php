@@ -62,8 +62,9 @@ class UserController extends Controller
         Auth::guard('web')->logout();
         return redirect()->route('user.login');
     }
-    public function deleteConvIfNoMessage(){
-        Conversation::whereNotIn('id',Message::groupBy('convo')->get('convo')->toArray())->delete();
+    public function deleteConvIfNoMessage()
+    {
+        Conversation::whereNotIn('id', Message::groupBy('convo')->get('convo')->toArray())->delete();
     }
     public function homepage()
     {
@@ -79,9 +80,9 @@ class UserController extends Controller
         return 'not allowed';
     }
     public function sendmessage(Request $request)
-    {   
-        $convo=Conversation::find($request->convo);
-        $targetID= ($convo->participant_one == Auth::user()->id) ? $convo->participant_two : $convo->participant_one;
+    {
+        $convo = Conversation::find($request->convo);
+        $targetID = ($convo->participant_one == Auth::user()->id) ? $convo->participant_two : $convo->participant_one;
         if (in_array(Auth::user()->id, [$convo->participant_one, $convo->participant_two])) {
             try {
                 Message::create([
@@ -91,12 +92,36 @@ class UserController extends Controller
                 ]);
                 event(new AnyMessage(Auth::user()->email, $targetID, $request->message));
                 event(new SendMessage($request->convo, $request->message, Auth::user()->email));
-                
             } catch (Exception $e) {
                 dd($e);
             }
         } else {
             return 'not allowed';
         }
+    }
+    public function searchUser(Request $request){
+        $myArray = [Auth::user()->id];
+
+        $alreadyHasConvo = Conversation::where('participant_one',Auth::user()->id)
+        ->orWhere('participant_two',Auth::user()->id)
+        ->get(['participant_one','participant_two']);
+
+        foreach($alreadyHasConvo as $element){
+            if($element->participant_one ===Auth::user()->id){
+                array_push($myArray,$element->participant_two);
+            }else{
+                array_push($myArray,$element->participant_one);
+            }
+        }
+        $users = User::where('email','LIKE',"%$request->keyword%")
+        ->whereNotIn('id',$myArray)->get();
+        return $users;
+    }
+    public function newConvo($id){
+        $newConvo = Conversation::create([
+            'participant_one'=>Auth::user()->id,
+            'participant_two'=>$id
+        ]);
+        return redirect()->route('user.convopage',$newConvo->id);
     }
 }

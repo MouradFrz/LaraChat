@@ -52,8 +52,10 @@
         document.querySelector('.messages-wrapper').scrollTop = document.querySelector('.messages-wrapper').scrollHeight;
         document.querySelector('#send-message-form').addEventListener('submit', (ev) => {
             ev.preventDefault()
+            let value = document.querySelector(".input-field").value
+            document.querySelector(".input-field").value = ""
             axios.post('/send-message', {
-                message: document.querySelector('.input-field').value,
+                message: value,
                 convo: "{{ $convo->id }}"
             })
         })

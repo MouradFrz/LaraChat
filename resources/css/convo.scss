@@ -56,6 +56,7 @@ body {
                 margin: 5px;
                 border-radius: 3px;
                 align-self: flex-end;
+                word-break: break-all;
                 &.sent {
                     background-color: $blue-medium;
                     align-self: flex-start;

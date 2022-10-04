@@ -39,6 +39,8 @@ Route::name('user.')->controller(UserController::class)->group(function(){
             Route::get('/','homepage')->name('homepage');
             Route::get('/convo/{convo}','convopage')->name('convopage');
             Route::post('/send-message','sendmessage')->name('send-message');
+            Route::get('/search-user','searchUser')->name('search-user');
+            Route::get('/new-convo/{id}','newConvo')->name('new-convo');
         });
     });
 });

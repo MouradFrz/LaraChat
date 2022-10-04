@@ -8,6 +8,7 @@ $black:#252525;
     padding: 0;
     margin: 0;
     font-family: 'Open Sans', sans-serif;
+    box-sizing: border-box;
 }
 body{
     min-height: 100vh;
@@ -68,6 +69,40 @@ body{
             text-align: center;
             color: #5d5d5d;
             font-size: 0.8rem;
+        }
+    }
+    section{
+        position: relative;
+        #user-search{
+            padding: 12px;
+            width: 100%;
+            border: none;
+            outline: none;
+        }
+        #floating-users{
+            position: absolute;
+            top: 43px;
+            left: 0;
+            z-index: 2;
+            width: 100%;
+            border-radius: 3px;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+            a{  
+                display: block;
+                text-decoration: none;
+                padding: 5px 8px;
+                background-color: $blue-dark;
+                color: white;
+                &:hover{
+                    background-color: #0a4264;
+                }
+            }
+            p{
+                padding: 5px 8px;
+                background-color: $blue-medium;
+                color: white;
+                text-align: center;
+            }
         }
     }
 }

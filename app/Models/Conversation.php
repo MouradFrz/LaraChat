@@ -9,6 +9,10 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 class Conversation extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['participant_one','participant_two'];
+    public $timestamps = false;
+
     public function messages(){
         return $this->hasMany(Message::class,'convo','id');
     }
