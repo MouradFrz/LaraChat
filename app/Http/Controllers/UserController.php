@@ -90,7 +90,7 @@ class UserController extends Controller
                     'message' => $request->message,
                     'convo' => $request->convo
                 ]);
-                event(new AnyMessage(Auth::user()->email, $targetID, $request->message));
+                event(new AnyMessage(Auth::user()->email, $targetID, $request->message,$request->convo));
                 event(new SendMessage($request->convo, $request->message, Auth::user()->email));
             } catch (Exception $e) {
                 dd($e);

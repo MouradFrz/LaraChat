@@ -23,12 +23,13 @@ class AnyMessage implements ShouldBroadcast
     protected $sender;
     protected $targetID;
     protected $message;
-    protected $date;
-    public function __construct($sender, $targetID, $message)
+    protected $convo;
+    public function __construct($sender, $targetID, $message,$convo)
     {
         $this->sender = $sender;
         $this->targetID = $targetID;
         $this->message = $message;
+        $this->convo = $convo;
     }
 
     /**
@@ -48,7 +49,8 @@ class AnyMessage implements ShouldBroadcast
         return [
             'sender'=>$this->sender,
             'message'=>$this->message,
-            'date'=>now(),
+            'date'=>date("Y-m-d H:i:s"),
+            'convo'=>$this->convo
         ];
     }
 }
