@@ -19,7 +19,9 @@
                 @else
                     {{ explode('@', $convo->participantOne->email)[0] }}
                 @endif
+                
             </p>
+            <small id="typing">...</small>
 
             <form action="{{ route('user.logout') }}" method="GET">
                 <input type="submit" value="Logout">
@@ -34,7 +36,7 @@
                     </div>
                 @endforeach
             </div>
-
+            
         </main>
         <form id="send-message-form">
             <input type="text" class="input-field">

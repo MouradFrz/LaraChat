@@ -46,7 +46,7 @@ body {
         height: 100%;
         .messages-wrapper {
             display: flex;
-            max-height: calc(100vh - 100px);
+            max-height: calc(100vh - 130px);
             flex-direction: column;
             overflow-y: scroll;
             .message {
