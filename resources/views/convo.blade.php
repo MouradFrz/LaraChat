@@ -13,13 +13,13 @@
 <body>
     <div class="container">
         <nav>
-            <h1>LaraChat</h1>
+            <h1><a href="{{ route('user.homepage') }}"><i class="bi bi-arrow-left"></i></a></h1>
+            <p>
                 @if ($convo->participant_one == Auth::user()->id)
                     {{ explode('@', $convo->participantTwo->email)[0] }}
                 @else
                     {{ explode('@', $convo->participantOne->email)[0] }}
                 @endif
-                
             </p>
             <small id="typing">...</small>
 
@@ -36,7 +36,7 @@
                     </div>
                 @endforeach
             </div>
-            
+
         </main>
         <form id="send-message-form">
             <input type="text" class="input-field">

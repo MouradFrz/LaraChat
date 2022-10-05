@@ -31,9 +31,9 @@
                             <div class="convo">
 
                                 @if ($convo->participantOne->id != Auth::user()->id)
-                                    <p>{{ $convo->participantOne->email }}</p>
+                                    <p class="convo-email">{{ $convo->participantOne->email }}</p>
                                 @else
-                                    <p>{{ $convo->participantTwo->email }}</p>
+                                    <p class="convo-email">{{ $convo->participantTwo->email }}</p>
                                 @endif
                                 <p>
                                     @if ($convo->latestMessage->senderID == Auth::user()->id)

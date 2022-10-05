@@ -24,3 +24,6 @@ Broadcast::channel('message-channel-{id}', function ($user, $id) {
 Broadcast::channel('any-message-{id}', function ($user, $id) {
     return true;
 });
+Broadcast::channel('user-connected', function ($user) {
+    return $user;
+});
