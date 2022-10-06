@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+}
+
+.custom-button {
+  all: unset;
+  background-color: #804140;
+  color: white;
+  padding: 6px 18px;
+  border-radius: 2px;
+  cursor: pointer;
+  border: none !important;
+}
+.custom-button:hover {
+  color: white;
+  background-color: #CC6765;
+}
+
+body {
+  height: 100vh;
+  background-color: #FF8280;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body .login-panel {
+  box-shadow: -2px 1px 81px -37px rgba(0, 0, 0, 0.67);
+  -webkit-box-shadow: -2px 1px 81px -37px rgba(0, 0, 0, 0.67);
+  -moz-box-shadow: -2px 1px 81px -37px rgba(0, 0, 0, 0.67);
+  padding: 20px 30px;
+  background-color: rgb(246, 246, 246);
+}
+body .login-panel .success {
+  color: green;
+}
+body .login-panel form {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  max-width: 100%;
+}
+body .login-panel form .error {
+  font-size: 0.9rem;
+  color: main #804140;
+  margin-bottom: 0.5rem;
+  font-weight: 300;
+}
+body .login-panel form input {
+  outline: none;
+  border: 1px solid gray;
+  padding: 4px 8px;
+}
+body .login-panel form [type=submit] {
+  width: -webkit-min-content !important;
+  width: -moz-min-content !important;
+  width: min-content !important;
+  padding-left: 10px;
+  padding-right: 10px;
+}

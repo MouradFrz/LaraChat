@@ -6,16 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>LaraChat - Home</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     @vite('resources/css/homepage.css')
 </head>
 
 <body>
     <div class="container">
         <nav>
-            <h1>LaraChat</h1>
-            <p>{{ explode('@', Auth::user()->email)[0] }}</p>
+            <div class="user-info">
+                <i style="font-size: 1.2rem" class="bi bi-person-fill"></i>
+                <div>
+                    <span class="green-circle"></span>
+                    <p>{{ explode('@', Auth::user()->email)[0] }}</p>
+                </div>
+            </div>
+            
             <form action="{{ route('user.logout') }}" method="GET">
-                <input type="submit" value="Logout">
+                <button><i class="bi bi-box-arrow-right"></i></button>
             </form>
         </nav>
         <section>
@@ -28,7 +35,7 @@
                 @foreach ($convos as $convo)
                     @if ($convo->latestMessage)
                         <a data-code="@if ($convo->participantOne->id != Auth::user()->id){{$convo->participantOne->email}}@else{{$convo->participantTwo->email}}@endif" href="{{ route('user.convopage', $convo->id) }}">
-                            <div class="convo">
+                            <div class="convo offline">
 
                                 @if ($convo->participantOne->id != Auth::user()->id)
                                     <p class="convo-email">{{ $convo->participantOne->email }}</p>

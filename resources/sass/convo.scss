@@ -1,9 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
-$blue-dark: #06283d;
-$blue-medium: #9bc4c9;
-$blue-light: #47b5ff;
-$blue-lighter: #dff6ff;
-$black: #252525;
+@import '_variables.scss';
 * {
     padding: 0;
     margin: 0;
@@ -19,27 +14,52 @@ body {
     margin: auto;
     max-height: 100vh;
     position: relative;
-    background-color: $blue-lighter;
+    background-color: $lighter;
     min-height: 100vh;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-
     nav {
         display: flex;
         align-items: center;
-        justify-content: space-between;
         padding: 10px 0px 10px 10px;
-        input {
+        gap: 10px;
+        h1 a{
+            color: $main-color;
+        }
+        .user-status{
+            display: flex;
+            flex-direction: column;
+            div{
+                display: flex;
+                align-items: center;
+                gap:5px;
+            }
+            .circle{
+                width: 10px;
+                height: 10px;
+                display: block;
+                border-radius: 50%;
+                background-color: gray;
+                transform: translateY(1px);
+                &.green{
+                    background-color: green;
+                }
+            }
+            .status{
+                font-size: 0.7rem;
+                color: gray;
+            }
+        }
+        button{
             padding: 8px 15px;
             border: none;
-            background-color: $blue-dark;
-            font-weight: 800;
-            color: white;
+            background-color: $lighter;
+            i{
+                font-weight: 900;
+            }
+            color: black;
             border-radius: 2px;
             cursor: pointer;
             transition: 0.08s ease;
-            &:hover {
-                background-color: $blue-medium;
-            }
         }
     }
     main {
@@ -50,15 +70,17 @@ body {
             flex-direction: column;
             overflow-y: scroll;
             .message {
-                background-color: $blue-light;
+                background-color: $main-color;
                 width: fit-content;
                 padding: 10px;
                 margin: 5px;
                 border-radius: 3px;
                 align-self: flex-end;
-                word-break: break-all;
+                overflow-wrap: break-word;
+                max-width: 60%;
+                color: white;
                 &.sent {
-                    background-color: $blue-medium;
+                    background-color: $secondary-color;
                     align-self: flex-start;
                 }
             }
@@ -75,12 +97,12 @@ body {
             all: unset;
             width: 20%;
             text-align: center;
-            background-color: $blue-medium;
+            background-color: $secondary-color;
             cursor: pointer;
             transition: 0.1s ease;
+            color: white;
             &:hover{
-                background-color: #06283d;
-                color: white;
+                background-color: $light;
             }
         }
         display: flex;
@@ -96,17 +118,17 @@ body {
   
   /* Track */
   ::-webkit-scrollbar-track {
-    background: $blue-medium;
+    background: $lighter;
     border-radius: 2px;
   }
   
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: #9db6c0;
+    background: $main-color;
     border-radius: 2px;
   }
   
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: $blue-dark;
+    background: $main-color;
   }

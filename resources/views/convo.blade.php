@@ -13,18 +13,17 @@
 <body>
     <div class="container">
         <nav>
-            <h1><a href="{{ route('user.homepage') }}"><i class="bi bi-arrow-left"></i></a></h1>
-            <p>
-                @if ($convo->participant_one == Auth::user()->id)
-                    {{ explode('@', $convo->participantTwo->email)[0] }}
-                @else
-                    {{ explode('@', $convo->participantOne->email)[0] }}
-                @endif
-            </p>
-            <small id="typing">...</small>
+            <h1><a href="{{ route('user.homepage') }}"><i class="bi bi-caret-left-fill"></i></a></h1>
 
-            <form action="{{ route('user.logout') }}" method="GET">
-                <input type="submit" value="Logout">
+            <div class="user-status">@if ($convo->participant_one == Auth::user()->id)<p id="convo-with">{{ explode('@', $convo->participantTwo->email)[0] }}</p>@else<p id="convo-with">{{ explode('@', $convo->participantOne->email)[0] }}</p>@endif
+                </p>
+                <div>
+                    <span class="circle"></span>
+                    <span class="status">Offline</span>
+                </div>
+            </div>
+            <form style="margin-left: auto" action="{{ route('user.logout') }}" method="GET">
+                <button><i class="bi bi-box-arrow-right"></i></button>
             </form>
         </nav>
         <main>
