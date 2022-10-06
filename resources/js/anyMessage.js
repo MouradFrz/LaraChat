@@ -1,18 +1,17 @@
-import "./bootstrap";
+import "./bootstrap"
 
-const id = getID;
+const id = getID
 
-const wrapper = $("main");
-const channel = Echo.private(`any-message-${id}`);
+const wrapper = $("main")
+const channel = Echo.private(`any-message-${id}`)
 
-
-function refreshOnlineStatus(values){
-    let convos = $('.convo-email')
-    convos.each((i,e)=>{
-        if(values.includes(e.textContent)){
-            e.style.color='green'
-        }else{
-            e.style.color='#252525'
+function refreshOnlineStatus(values) {
+    let convos = $(".convo-email")
+    convos.each((i, e) => {
+        if (values.includes(e.textContent)) {
+            e.style.color = "green"
+        } else {
+            e.style.color = "#252525"
         }
     })
 }
@@ -20,32 +19,34 @@ function refreshOnlineStatus(values){
 channel
     .subscribed(() => {})
     .listen(".AnyMessage", (ev) => {
-        $(`[data-code="${ev.sender}"]`).detach();
-        $(`.no-convo`).detach();
+        $(`[data-code="${ev.sender}"]`).detach()
+        $(`.no-convo`).detach()
         wrapper.prepend(`<a data-code="${ev.sender}" href="convo/${ev.convo}">
         <div class="convo">
-            <p style="font-weight:900" >${ev.sender}</p>
+            <p style="font-weight:900">${ev.sender}</p>
             <p>${ev.message}</p>
             <p>${ev.date}</p>
         </div>
-    </a>`);
-    });
-
-
-Echo.join('user-connected')
-.here(data=>{
-    let tempArray = []
-    data.forEach(e=>{
-        tempArray.push(e.email)
+    </a>`)
     })
-    refreshOnlineStatus(tempArray)
-})
-.joining(data=>{
-    refreshOnlineStatus([data.email])
-})
-.leaving(data=>{
-    refreshOnlineStatus([data])
-})
-
-
-
+let temp = false
+let justLeft = false
+Echo.join("user-connected")
+    .here((data) => {
+        let tempArray = []
+        data.forEach((e) => {
+            tempArray.push(e.email)
+        })
+        refreshOnlineStatus(tempArray)
+    })
+    .joining((data) => {
+        (justLeft == data.email) ? clearTimeout(temp) : ""
+        refreshOnlineStatus([data.email])
+    })
+    .leaving((data) => {
+        justLeft = data.email
+        temp = setTimeout(()=>{
+            refreshOnlineStatus([data])
+            justLeft=false
+        }, 5000)
+    });
