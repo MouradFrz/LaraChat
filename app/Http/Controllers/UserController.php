@@ -90,7 +90,7 @@ class UserController extends Controller
                     'message' => $request->message,
                     'convo' => $request->convo
                 ]);
-                event(new AnyMessage(Auth::user()->email, $targetID, $request->message,$convo->hashid));
+                event(new AnyMessage(Auth::user()->email, $targetID, $request->message, $convo->hashid));
                 event(new SendMessage($request->convo, $request->message, Auth::user()->email));
             } catch (Exception $e) {
                 dd($e);
@@ -99,29 +99,31 @@ class UserController extends Controller
             return 'not allowed';
         }
     }
-    public function searchUser(Request $request){
+    public function searchUser(Request $request)
+    {
         $myArray = [Auth::user()->id];
 
-        $alreadyHasConvo = Conversation::where('participant_one',Auth::user()->id)
-        ->orWhere('participant_two',Auth::user()->id)
-        ->get(['participant_one','participant_two']);
+        $alreadyHasConvo = Conversation::where('participant_one', Auth::user()->id)
+            ->orWhere('participant_two', Auth::user()->id)
+            ->get(['participant_one', 'participant_two']);
 
-        foreach($alreadyHasConvo as $element){
-            if($element->participant_one ===Auth::user()->id){
-                array_push($myArray,$element->participant_two);
-            }else{
-                array_push($myArray,$element->participant_one);
+        foreach ($alreadyHasConvo as $element) {
+            if ($element->participant_one === Auth::user()->id) {
+                array_push($myArray, $element->participant_two);
+            } else {
+                array_push($myArray, $element->participant_one);
             }
         }
-        $users = User::where('email','LIKE',"%$request->keyword%")
-        ->whereNotIn('id',$myArray)->get();
+        $users = User::where('email', 'LIKE', "%$request->keyword%")
+            ->whereNotIn('id', $myArray)->get();
         return $users;
     }
-    public function newConvo($id){
+    public function newConvo($id)
+    {
         $newConvo = Conversation::create([
-            'participant_one'=>Auth::user()->id,
-            'participant_two'=>$id
+            'participant_one' => Auth::user()->id,
+            'participant_two' => $id
         ]);
-        return redirect()->route('user.convopage',$newConvo->hashid);
+        return redirect()->route('user.convopage', $newConvo->hashid);
     }
 }
