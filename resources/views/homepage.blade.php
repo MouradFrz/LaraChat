@@ -34,7 +34,7 @@
             @if (count($convos) != 0)
                 @foreach ($convos as $convo)
                     @if ($convo->latestMessage)
-                        <a data-code="@if ($convo->participantOne->id != Auth::user()->id){{$convo->participantOne->email}}@else{{$convo->participantTwo->email}}@endif" href="{{ route('user.convopage', $convo->id) }}">
+                        <a data-code="@if ($convo->participantOne->id != Auth::user()->id){{$convo->participantOne->email}}@else{{$convo->participantTwo->email}}@endif" href="{{ route('user.convopage', $convo->hashid) }}">
                             <div class="convo offline">
 
                                 @if ($convo->participantOne->id != Auth::user()->id)

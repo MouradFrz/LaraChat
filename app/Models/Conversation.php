@@ -5,11 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Kayandra\Hashidable\Hashidable;
 
 class Conversation extends Model
 {
     use HasFactory;
+    use Hashidable;
 
+    
     protected $fillable = ['participant_one','participant_two'];
     public $timestamps = false;
 

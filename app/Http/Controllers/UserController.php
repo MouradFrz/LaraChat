@@ -90,7 +90,7 @@ class UserController extends Controller
                     'message' => $request->message,
                     'convo' => $request->convo
                 ]);
-                event(new AnyMessage(Auth::user()->email, $targetID, $request->message,$request->convo));
+                event(new AnyMessage(Auth::user()->email, $targetID, $request->message,$convo->hashid));
                 event(new SendMessage($request->convo, $request->message, Auth::user()->email));
             } catch (Exception $e) {
                 dd($e);
@@ -122,6 +122,6 @@ class UserController extends Controller
             'participant_one'=>Auth::user()->id,
             'participant_two'=>$id
         ]);
-        return redirect()->route('user.convopage',$newConvo->id);
+        return redirect()->route('user.convopage',$newConvo->hashid);
     }
 }
