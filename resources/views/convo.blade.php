@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Conversation</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-    @vite('resources/css/convo.css')
+    <link rel="stylesheet" href="{{ asset('css/convo.css') }}">
 </head>
 
 <body>
@@ -48,7 +48,7 @@
         let getID = "{{ $convo->id }}"
         let email = "{{ Auth::user()->email }}"
     </script>
-    @vite('resources/js/privateListener.js')
+    <script src="{{ asset('js/privateListener.js') }}"></script>
     <script>
         document.querySelector('.messages-wrapper').scrollTop = document.querySelector('.messages-wrapper').scrollHeight;
         document.querySelector('#send-message-form').addEventListener('submit', (ev) => {

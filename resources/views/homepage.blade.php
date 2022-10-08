@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>LaraChat - Home</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-    @vite('resources/css/homepage.css')
+    <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
 </head>
 
 <body>
@@ -67,9 +67,8 @@
         let getID = "{{ Auth::user()->id }}"
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    @vite('resources/js/anyMessage.js')
-    @vite('resources/js/userSearch.js')
+    <script src="{{ asset('js/anyMessage.js') }}"></script>
+    <script src="{{ asset('js/userSearch.js') }}"></script>
 </body>
 
 </html>
