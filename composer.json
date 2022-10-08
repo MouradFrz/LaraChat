@@ -13,7 +13,7 @@
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "pusher/pusher-php-server": "^7.0",
-        "ext-gmp":"1.0"
+        "ext-gmp":"8.1.11"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
