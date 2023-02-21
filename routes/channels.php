@@ -16,3 +16,15 @@ use Illuminate\Support\Facades\Broadcast;
 Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
+Broadcast::channel('base-channel', function ($user) {
+    return true;
+});
+Broadcast::channel('any-message-{id}', function ($user,$id) {
+    return true;
+});
+Broadcast::channel('message-channel-{id}', function ($user,$id) {
+    return true;
+});
+Broadcast::channel('user-connected', function ($user) {
+    return $user;
+});
